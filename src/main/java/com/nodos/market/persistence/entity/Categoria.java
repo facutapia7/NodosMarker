@@ -1,6 +1,5 @@
 package com.nodos.market.persistence.entity;
 
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,14 +11,16 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
     private Integer idCategoria;
+
     private String descripcion;
     private Boolean estado;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
 
     public Integer getIdCategoria() {
         return idCategoria;
     }
-    @OneToMany(mappedBy = "categoria")
-    private List<Producto> productos;
 
     public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
@@ -39,5 +40,13 @@ public class Categoria {
 
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 }
