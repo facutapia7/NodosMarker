@@ -1,6 +1,6 @@
 package com.nodos.market.domain.dto;
 
-public class AuthenticationRecquest {
+public class AuthenticationRequest {
     private String username;
     private String password;
 

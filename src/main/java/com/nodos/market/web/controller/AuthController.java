@@ -1,6 +1,6 @@
 package com.nodos.market.web.controller;
 
-import com.nodos.market.domain.dto.AuthenticationRecquest;
+import com.nodos.market.domain.dto.AuthenticationRequest;
 import com.nodos.market.domain.dto.AuthenticationResponse;
 import com.nodos.market.domain.service.NodosUserDetailsService;
 import com.nodos.market.web.security.JWTUtil;
@@ -19,21 +19,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
     @Autowired
     private AuthenticationManager authenticationManager;
+
     @Autowired
     private NodosUserDetailsService nodosUserDetailsService;
+
     @Autowired
     private JWTUtil jwtUtil;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> createToken (@RequestBody AuthenticationRecquest request){
+    public ResponseEntity<AuthenticationResponse> createToken(@RequestBody AuthenticationRequest request) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-              UserDetails userDetails = NodosUserDetailsService.loadUserByUsername(request.getUsername());
-              String jwt = jwtUtil.genetareToken(userDetails);
-        return  new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
-        } catch (BadCredentialsException e){
+            UserDetails userDetails = nodosUserDetailsService.loadUserByUsername(request.getUsername());
+            String jwt = jwtUtil.generateToken(userDetails);
+
+            return new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
+        } catch (BadCredentialsException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
