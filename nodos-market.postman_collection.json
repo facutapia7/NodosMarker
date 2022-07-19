@@ -9,7 +9,14 @@
 			"name": "Get Products",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVqYW5kcm8iLCJpYXQiOjE1OTU2MTgzODgsImV4cCI6MTU5NTY1NDM4OH0.MNDlElN415W872NJ80KrHJiG40BZHloCOOAV3x5999g",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8090/nodos-market/api/products/all",
 					"protocol": "http",
@@ -197,6 +204,92 @@
 						"api",
 						"purchases",
 						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"alejandro\",\n    \"password\": \"nodos\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/nodos-market/api/auth/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"nodos-market",
+						"api",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate in Heroku",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"alejandro\",\n    \"password\": \"nodos\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://nodosmarket.herokuapp.com/nodos-market/api/auth/authenticate",
+					"protocol": "http",
+					"host": [
+						"nodosmarket",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"nodos-market",
+						"api",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Products in Heroku",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://nodosmarket.herokuapp.com/nodos-market/api/products/all",
+					"protocol": "http",
+					"host": [
+						"nodosmarket",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"nodos-market",
+						"api",
+						"products",
+						"all"
 					]
 				}
 			},
